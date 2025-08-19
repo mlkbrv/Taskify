@@ -13,7 +13,7 @@ class Task(models.Model):
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(blank=True, null=True)
     sender = models.ForeignKey(User, related_name='sender', on_delete=models.CASCADE)
-    recipient = models.ForeignKey(User, related_name='recipient', on_delete=models.CASCADE)
+    recipient = models.ForeignKey(User, related_name='recipient', on_delete=models.CASCADE, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     completed_at = models.DateTimeField(blank=True, null=True)
     is_complete = models.BooleanField(default=False)
