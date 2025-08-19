@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'django_extensions',
     'users.apps.UsersConfig',
+    'main.apps.MainConfig',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,6 @@ SIMPLE_JWT = {
     "UPDATE_LAST_LOGIN": True,
     'USERNAME_FIELD': 'email',
 }
+
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
