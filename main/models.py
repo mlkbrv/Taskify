@@ -8,8 +8,18 @@ def validate_file_type(value):
     if value.file.content_type not in valid_mime_types:
         raise ValidationError("Можно загружать только JPG, PNG или MP4 файлы.")
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
 
 class Task(models.Model):
+    class Choices(models.TextChoices):
+        NOT_STARTED = 'NS'
+        STARTED = 'ST'
+        COMPLETED = 'CO'
+        FAILED = 'FA'
     name = models.CharField(max_length=100, blank=False, null=False)
     description = models.TextField(blank=True, null=True)
     sender = models.ForeignKey(User, related_name='sender', on_delete=models.CASCADE)
@@ -17,7 +27,8 @@ class Task(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     completed_at = models.DateTimeField(blank=True, null=True)
     is_complete = models.BooleanField(default=False)
-
+    progress = models.CharField(max_length=2,choices=Choices.choices,default=Choices.NOT_STARTED)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return self.name
 

@@ -8,5 +8,6 @@ urlpatterns = [
     path('tasks/completed/', CompletedTasksView.as_view(), name='completed-tasks'),
     path('tasks/<int:pk>/', TaskDetailView.as_view(), name='task-detail'),
     path('tasks/<int:pk>/complete/', TaskCompleteView.as_view(), name='complete-task'),
+    path('categories/', AllCategoriesView.as_view(), name='all-categories'),
 ]
 
